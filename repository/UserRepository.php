@@ -10,6 +10,16 @@ class UserRepository implements Repository{
         return $relevantSessions;
     }
 
+    // This is code I know very well should never be in a "real" program
+    public static function checkLogin($connection){
+        $login = $connection->selectQuery("SELECT id FROM users WHERE username = '".$_POST['username']."' AND userpassword = '".$_POST['password']."';");
+        return $login;    
+    }
+
+    public static function logInUser($connection, $userRow){
+        $connection->insertQuery("INSERT INTO user_login(userID, session_id, dato) VALUES(".$userRow['id'].",'".session_id()."',NOW());");
+    }
+
     public function selectById($connection,$id){
 
     }

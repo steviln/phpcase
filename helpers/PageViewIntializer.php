@@ -15,6 +15,16 @@ class PageViewIntializer{
 
         $session = new Session();
         $session->init($holder->getConnection());
+
+        if(isset($_GET['action'])){
+            $tempAction = $_GET['action'];
+            if(ctype_alpha($tempAction) && strlen($tempAction) < 16){
+                $holder->setActionString($tempAction);    
+            }
+
+        }
+
+        $holder->initializeAction();
    
 
         return $holder;

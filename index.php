@@ -1,3 +1,8 @@
+<?php
+
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="no">
   <head>
@@ -6,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Visma Commerce Case</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   </head>
   <body>
         <?php
@@ -45,8 +51,13 @@
 
             });
 
-
             $holder = PageViewIntializer::initialize();
+            $holder->getAction()->setData($holder);
+            if($holder->getAction()->postCheck()){
+                $holder->getAction()->display();
+            }else{
+                $holder->getAction()->redirect();
+            }
 
 
 
