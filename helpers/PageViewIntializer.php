@@ -15,6 +15,7 @@ class PageViewIntializer{
 
         $session = new Session();
         $session->init($holder->getConnection());
+        $holder->setSession($session);
 
         if(isset($_GET['action'])){
             $tempAction = $_GET['action'];

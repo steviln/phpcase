@@ -11,6 +11,7 @@ class UserRepository implements Repository{
     }
 
     // This is code I know very well should never be in a "real" program
+    // Would never use unhashed passwords in a real application
     public static function checkLogin($connection){
         $login = $connection->selectQuery("SELECT id FROM users WHERE username = '".$_POST['username']."' AND userpassword = '".$_POST['password']."';");
         return $login;    
@@ -20,14 +21,20 @@ class UserRepository implements Repository{
         $connection->insertQuery("INSERT INTO user_login(userID, session_id, dato) VALUES(".$userRow['id'].",'".session_id()."',NOW());");
     }
 
-    public function selectById($connection,$id){
+    public static function logOutuser($connection){
+        $connection->deleteQuery("DELETE FROM user_login WHERE session_id = '".session_id()."';");
+    }
+
+    public static function selectById($connection,$id){
 
     }
-    public function selectList($connection){
+    public static function selectList($connection){
 
     }
-    public function addEntity($connection,$values){
-
+    // Off course, validation for security or whether the fields are set are not done. 
+    public static function addEntity($connection,$values){
+            $connection->insertQuery("INSERT INTO users(username, userpassword, email) VALUES('".$_POST['username']."','".$_POST['password']."','".$_POST['email']."');");
+            $connection->insertQuery("INSERT INTO user_login(userID, session_id, dato) VALUES(".$connection->lastInserted().",'".session_id()."',NOW());");
     }
 
 
