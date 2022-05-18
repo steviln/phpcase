@@ -8,7 +8,7 @@
             <div><a href="/index.php?action=Login">Login</a></div>
             <div><a href="/index.php?action=Register">register</a></div>
             <?php } ?>
-            <div><a href="/index.php?action=Questions">Questions</a></div>
+            <div><a href="/index.php?action=Question">Questions</a></div>
         </div>
         <div class="col-sm-4"></div>
     </div>
