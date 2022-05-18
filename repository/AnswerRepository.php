@@ -20,7 +20,7 @@
         }
 
         public static function addEntity($connection,$values){
-            $connection->insertQuery("INSERT INTO answer(header,text,userID,questionID,postdate) VALUES('".$values['header']."','".$values['text']."',".$values['userID'].",".$values['parentID'].",NOW());");
+            $connection->insertQuery("INSERT INTO answer(header,text,userID,questionID,postdate) VALUES('".$values['header']."','".$values['content']."',".$values['userID'].",".$values['parentID'].",NOW());");
         }
     }
 
